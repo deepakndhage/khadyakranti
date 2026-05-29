@@ -1,13 +1,19 @@
 import type { NextConfig } from "next";
 
-const repoName = 'khadyakranti' // ← change this to match your GitHub repo name
+const repoName = 'khadyakranti'
+// GITHUB_ACTIONS env var is set automatically on GitHub Actions runners
+const basePath = process.env.GITHUB_ACTIONS === 'true' ? `/${repoName}` : ''
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: `/${repoName}`,
-  assetPrefix: `/${repoName}`,
+  basePath,
+  assetPrefix: basePath,
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './imageLoader.ts',
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 
