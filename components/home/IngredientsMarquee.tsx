@@ -1,73 +1,75 @@
-'use client'
+import AnimatedSection from '@/components/ui/AnimatedSection'
 
-const spices = [
-  'Coriander', 'Cumin', 'Kashmiri Chilli', 'Turmeric', 'Black Pepper',
-  'Star Anise', 'Cloves', 'Cinnamon', 'Cardamom', 'Bay Leaves',
-  'Fenugreek', 'Dried Ginger', 'Mustard Seeds', 'Fennel', 'Asafoetida',
+const moments = [
+  {
+    headline: 'Dinner is on the table.',
+    body: 'Not at 9. Not reheated. Not ordered in. On the table, hot, the way it should be — every single night.',
+  },
+  {
+    headline: 'The family actually eats together.',
+    body: 'No one is still cooking. No one is still waiting. Everyone sits down at the same time, to a meal that tastes like it took hours.',
+  },
+  {
+    headline: 'The rest of the evening is yours.',
+    body: 'Help with homework. Call your parents. Watch something. Sleep early. The kitchen is done. Your time has started.',
+  },
 ]
 
-const Dot = () => (
-  <span className="mx-5 text-turmeric/50 text-xl select-none">·</span>
-)
-
-const Row = ({ reversed = false }: { reversed?: boolean }) => (
-  <div className="overflow-hidden py-2">
-    <div
-      className={`flex whitespace-nowrap ${reversed ? '[animation-direction:reverse]' : ''} animate-marquee`}
-    >
-      {[...spices, ...spices].map((spice, i) => (
-        <span key={i} className="flex items-center">
-          <span
-            className="text-xl font-semibold text-ivory/80 uppercase tracking-widest"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            {spice}
-          </span>
-          <Dot />
-        </span>
-      ))}
-    </div>
-  </div>
-)
-
-export default function IngredientsMarquee() {
+export default function TimeSection() {
   return (
-    <section className="bg-forest py-24 overflow-hidden relative">
-      {/* Background circle accent */}
+    <section className="bg-forest py-28 px-6 overflow-hidden relative">
+      {/* Decorative glow */}
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-5 pointer-events-none"
-        style={{ background: '#D4780A' }}
+        className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-10 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #D4780A 0%, transparent 70%)' }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 mb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-turmeric/70 mb-3">
-              Pure. Natural. Real.
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-bold text-ivory"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              We know every spice by name.
-            </h2>
-          </div>
-          <p className="text-ivory/50 text-sm max-w-xs text-right hidden md:block">
-            Every ingredient is selected for purity.<br />
-            No fillers, no additives, no shortcuts.
+      <div className="max-w-6xl mx-auto">
+        {/* Headline */}
+        <AnimatedSection className="text-center mb-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-turmeric/70 mb-5">
+            What 10 Minutes Gives You
           </p>
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-ivory leading-tight mb-6"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            It doesn't just save time.
+            <br />
+            <span className="text-turmeric italic">It creates it.</span>
+          </h2>
+          <p className="text-ivory/50 text-base max-w-xl mx-auto leading-relaxed">
+            Every minute you don't spend grinding, measuring, and guessing
+            is a minute that belongs to you and the people you love.
+          </p>
+        </AnimatedSection>
+
+        {/* Three evening moments */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ivory/10 rounded-2xl overflow-hidden">
+          {moments.map((m, i) => (
+            <AnimatedSection key={i} delay={i * 0.15} direction="up">
+              <div className="bg-forest p-8 lg:p-10 h-full flex flex-col">
+                <h3
+                  className="text-xl lg:text-2xl font-bold text-ivory mb-4 leading-snug"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {m.headline}
+                </h3>
+                <p className="text-ivory/55 text-sm leading-relaxed flex-1">{m.body}</p>
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
-      </div>
 
-      {/* Two-row marquee */}
-      <div className="space-y-1">
-        <Row />
-        <Row reversed />
+        {/* Bottom line */}
+        <AnimatedSection delay={0.5} className="text-center mt-14">
+          <p
+            className="text-ivory/30 text-sm uppercase tracking-[0.2em]"
+          >
+            10 Minute Magix™ — because your time is the real ingredient.
+          </p>
+        </AnimatedSection>
       </div>
-
-      <p className="text-ivory/40 text-sm text-center mt-8 px-6 md:hidden">
-        Every ingredient is selected for purity. No fillers, no additives, no shortcuts.
-      </p>
     </section>
   )
 }
