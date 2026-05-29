@@ -7,8 +7,7 @@ const nextConfig: NextConfig = {
   basePath,
   assetPrefix: basePath,
   images: {
-    loader: 'custom',
-    loaderFile: './imageLoader.ts',
+    unoptimized: true,
   },
 };
 

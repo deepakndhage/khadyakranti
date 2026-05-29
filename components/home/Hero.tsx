@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+import Image from '@/components/ui/AppImage'
 import Link from 'next/link'
 
 const SpiceLeaf = ({ className, style }: { className: string; style?: React.CSSProperties }) => (
