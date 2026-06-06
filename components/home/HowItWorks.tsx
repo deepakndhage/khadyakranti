@@ -9,7 +9,7 @@ const steps = [
   },
   {
     num: '02',
-    title: 'Add your cooked\nchicken, mutton,\neg or vegetables.',
+    title: 'Add your cooked\nchicken, mutton,\negg or vegetables.',
     desc: 'Pre-cooked protein or veggies go straight in. No marinating. No measuring spices. No mess.',
   },
   {
